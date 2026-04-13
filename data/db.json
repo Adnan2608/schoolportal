@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "initialized": true,
+    "created_at": "2026-04-12T07:32:23.665Z",
+    "nextIds": {
+      "schools": 2,
+      "users": 6,
+      "parents": 2,
+      "students": 2,
+      "teachers": 2,
+      "fees": 2,
+      "payments": 1,
+      "attendance": 1,
+      "results": 7,
+      "notices": 2,
+      "admissionRequests": 1,
+      "onboardingRequests": 1,
+      "resetRequests": 1,
+      "notifications": 1,
+      "salaries": 3,
+      "salaryPayments": 3
+    }
+  },
+  "schools": [
+    {
+      "id": 1,
+      "name": "Bright Future School",
+      "code": "BFS001",
+      "address": "Sahiwal, Pakistan",
+      "phone": "0300-1111111",
+      "tagline": "Learning with discipline and care",
+      "logo_url": "",
+      "primary_color": "#2146d0",
+      "whatsapp_number": "923001111111",
+      "created_at": "2026-04-12T07:32:23.665Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "school_id": null,
+      "role": "owner",
+      "name": "Portal Owner",
+      "email": "owner@portal.local",
+      "password_hash": "c37811d0a80b2c53798d998bbab34e78:c0d73963448027cf24da865c4c18d6cb2540cd8551c87a591e8c26661bc7ba9b028b4c34f14768638777122a3c5a5f1d9e812caf70f72a00323491c2f291d65c",
+      "linked_parent_id": null,
+      "linked_student_id": null,
+      "is_active": true,
+      "created_at": "2026-04-12T07:32:23.717Z"
+    },
+    {
+      "id": 2,
+      "school_id": 1,
+      "role": "admin",
+      "name": "BFS Admin",
+      "email": "admin@bfs.local",
+      "password_hash": "c59e223fac7fd0ac37f9a0df3b86c34f:7db40ef4b21ee7a9ae8329075b4fd8a445db942d98212f6846fa4f1e45de7c6eb8123746ad5b99722b39510fcf9e68c5d033839d8e25b5cdff8555f4d9cbd96b",
+      "linked_parent_id": null,
+      "linked_student_id": null,
+      "is_active": true,
+      "created_at": "2026-04-12T07:32:23.770Z"
+    },
+    {
+      "id": 3,
+      "school_id": 1,
+      "role": "parent",
+      "name": "Muhammad Aslam",
+      "email": "parent1@bfs.local",
+      "password_hash": "246c9fc2505d5d3189101b23574b7712:7e9976cb1d9e8d445ba48d2a2be495140590b3f68f0c46afede66f29184d61ffb0cc926833de19c4b334f204cf6406589fa7a1b8d6a5669c77fa7ff7eff70e01",
+      "linked_parent_id": 1,
+      "linked_student_id": null,
+      "is_active": true,
+      "created_at": "2026-04-12T07:32:23.822Z"
+    },
+    {
+      "id": 4,
+      "school_id": 1,
+      "role": "student",
+      "name": "Ahmad Ali",
+      "email": "student1@bfs.local",
+      "password_hash": "5ef9cd280fdbed2cac158629bcac1751:cc144cfba42a1e53647d32670ba2fe4f350db4da0d7fa6ff361cf61f21fc7f4961b9efe377b9473550cd49524e1b7f7ca37816783102fbc349d4ddcbc2c936de",
+      "linked_parent_id": null,
+      "linked_student_id": 1,
+      "is_active": true,
+      "created_at": "2026-04-12T07:32:23.871Z"
+    },
+    {
+      "id": 5,
+      "school_id": 1,
+      "role": "teacher",
+      "name": "Sir Hamza",
+      "email": "teacher1@bfs.local",
+      "password_hash": "bb14c2e44492e5567af72bb607bae753:7502339428c4a1955dfda775bbcff72fdc51946d9d0e5ece740fcf31ebe1a0ed47c412041bbf8989b4eb81833736b1e3f099d16249a9510321c3fc45dfec34cf",
+      "linked_parent_id": null,
+      "linked_student_id": null,
+      "linked_teacher_id": 1,
+      "is_active": true,
+      "created_at": "2026-04-12T07:32:23.920Z"
+    }
+  ],
+  "parents": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "name": "Muhammad Aslam",
+      "phone": "923005551111",
+      "email": "aslam.parent@bfs.local",
+      "address": "Street 1, Sahiwal",
+      "created_at": "2026-04-12T07:32:23.770Z"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "parent_id": 1,
+      "roll_no": "101",
+      "name": "Ahmad Ali",
+      "class_name": "5",
+      "section": "A",
+      "father_name": "Muhammad Aslam",
+      "phone": "923007771111",
+      "address": "Street 1, Sahiwal",
+      "created_at": "2026-04-12T07:32:23.771Z"
+    }
+  ],
+  "teachers": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "name": "Sir Hamza",
+      "subject": "Mathematics",
+      "assigned_class": "5-A",
+      "phone": "923006661111",
+      "email": "teacher1@bfs.local",
+      "created_at": "2026-04-12T07:32:23.871Z"
+    }
+  ],
+  "fees": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "student_id": 1,
+      "title": "Monthly Tuition Fee",
+      "month_label": "April 2026",
+      "amount": 4500,
+      "due_date": "2026-04-20",
+      "notes": "Regular monthly fee",
+      "status": "unpaid",
+      "original_amount": 4500,
+      "balance_due": 4500,
+      "amount_paid": 0,
+      "created_by": 2,
+      "created_at": "2026-04-12T07:32:23.920Z"
+    }
+  ],
+  "payments": [],
+  "attendance": [],
+  "results": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "student_id": 1,
+      "exam_title": "Mid Term 2026",
+      "subject": "Mathematics",
+      "total_marks": 100,
+      "obtained_marks": 86,
+      "grade": "A",
+      "remarks": "Very good performance",
+      "created_at": "2026-04-12T07:32:23.920Z"
+    },
+    {
+      "id": 2,
+      "school_id": 1,
+      "student_id": 1,
+      "exam_title": "Mid Term 2026",
+      "subject": "English",
+      "total_marks": 100,
+      "obtained_marks": 81,
+      "grade": "A",
+      "remarks": "Good expression",
+      "created_at": "2026-04-12T07:32:23.920Z"
+    },
+    {
+      "id": 5,
+      "school_id": 1,
+      "student_id": 1,
+      "exam_title": "Annual Exam 2026",
+      "subject": "English",
+      "total_marks": 100,
+      "obtained_marks": 92,
+      "grade": "A+",
+      "remarks": "Excellent",
+      "overall_remarks": "Excellent overall performance.",
+      "result_status": "Promoted",
+      "position_value": "first",
+      "position_label": "1st Position",
+      "created_at": "2026-04-12T13:16:39.938Z"
+    },
+    {
+      "id": 6,
+      "school_id": 1,
+      "student_id": 1,
+      "exam_title": "Annual Exam 2026",
+      "subject": "Math",
+      "total_marks": 100,
+      "obtained_marks": 88,
+      "grade": "A",
+      "remarks": "Very Good",
+      "overall_remarks": "Excellent overall performance.",
+      "result_status": "Promoted",
+      "position_value": "first",
+      "position_label": "1st Position",
+      "created_at": "2026-04-12T13:16:39.938Z"
+    }
+  ],
+  "notices": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "title": "April Monthly Test Schedule",
+      "body": "Monthly tests will start from 15 April. Students should bring their admit slips and stationery.",
+      "audience": "all",
+      "created_by": 2,
+      "created_at": "2026-04-12T07:32:23.920Z"
+    }
+  ],
+  "admissionRequests": [],
+  "onboardingRequests": [],
+  "resetRequests": [],
+  "notifications": [],
+  "salaries": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "teacher_id": 1,
+      "title": "Monthly Salary",
+      "month_label": "April 2026",
+      "gross_amount": 30000,
+      "amount_paid": 10000,
+      "balance_due": 21500,
+      "due_date": "2026-04-30",
+      "note": "First installment paid",
+      "status": "partial",
+      "created_by": 2,
+      "created_at": "2026-04-12T12:00:00.000Z",
+      "bonus_amount": 2000,
+      "deduction_amount": 500,
+      "net_amount": 31500
+    },
+    {
+      "id": 2,
+      "school_id": 1,
+      "teacher_id": 1,
+      "title": "Monthly Salary",
+      "month_label": "March 2026",
+      "gross_amount": 30000,
+      "bonus_amount": 1500,
+      "deduction_amount": 1000,
+      "net_amount": 30500,
+      "amount_paid": 30500,
+      "balance_due": 0,
+      "due_date": "2026-03-31",
+      "note": "Salary fully cleared",
+      "status": "paid",
+      "created_by": 2,
+      "created_at": "2026-03-31T12:00:00.000Z"
+    }
+  ],
+  "salaryPayments": [
+    {
+      "id": 1,
+      "school_id": 1,
+      "salary_id": 1,
+      "amount": 10000,
+      "previous_balance": 31500,
+      "remaining_balance": 21500,
+      "payment_type": "partial",
+      "method": "Cash",
+      "note": "Advance salary installment",
+      "status": "paid",
+      "created_at": "2026-04-12T12:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "school_id": 1,
+      "salary_id": 2,
+      "amount": 30500,
+      "previous_balance": 30500,
+      "remaining_balance": 0,
+      "payment_type": "full",
+      "method": "Bank Transfer",
+      "note": "Payroll closed",
+      "status": "paid",
+      "created_at": "2026-03-31T12:00:00.000Z"
+    }
+  ]
+}

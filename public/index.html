@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Portal Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand-block">
+        <div class="brand-mark">SP</div>
+        <div>
+          <div class="eyebrow">School ERP · Multi-Campus · Secure Access</div>
+          <h1 id="brandTitle">School Portal Suite</h1>
+          <p id="brandSubtitle">A professional school management portal with secure multi-school data isolation, role-based access, fee management, attendance, results, and dedicated portals for parents, teachers, and students.</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div id="sessionInfo" class="session"></div>
+        <button id="logoutBtn" class="btn secondary hidden">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero card">
+      <div class="hero-copy">
+        <div class="section-tag">Private School Operations</div>
+        <h2>A portal that feels built for real school operations</h2>
+        <p>This version is designed to look clean, professional, and deployment-ready for real school use. The owner can manage the full network, while each school admin sees only the data of their own school.</p>
+        <div class="hero-metrics">
+          <div><strong>Multi-School</strong><span>Each school keeps separate data</span></div>
+          <div><strong>Parent & Student Portal</strong><span>fees, receipts, results, profile</span></div>
+          <div><strong>Admin Controls</strong><span>students, teachers, attendance, bulk fee</span></div>
+        </div>
+      </div>
+      <div class="hero-points">
+        <span>Secure school isolation</span>
+        <span>Owner access</span>
+        <span>Admin operations</span>
+        <span>Parent fee portal</span>
+        <span>Student profile</span>
+        <span>Bulk fee tools</span>
+        <span>Printable challan</span>
+        <span>Brand control</span>
+      </div>
+    </section>
+
+    <main>
+      <section id="setupView" class="card hidden">
+        <div class="section-head">
+          <div>
+            <h2>Initial Setup</h2>
+            <p>This launch-ready installer helps you create the owner account and the first school/admin account.</p>
+          </div>
+        </div>
+        <div class="grid two">
+          <form id="setupForm" class="card inner-card form-grid">
+            <h3>Portal Setup</h3>
+            <label><span>Owner Name</span><input name="ownerName" required></label>
+            <label><span>Owner Email</span><input name="ownerEmail" type="email" required></label>
+            <label><span>Owner Password</span><input name="ownerPassword" type="password" required></label>
+            <label><span>School Name</span><input name="name" required></label>
+            <label><span>School Code</span><input name="code" required placeholder="For example: BFS001"></label>
+            <label><span>School Tagline</span><input name="tagline" placeholder="Growing minds with values"></label>
+            <label><span>School Phone</span><input name="phone"></label>
+            <label><span>School Address</span><input name="address"></label>
+            <label><span>Logo URL</span><input name="logoUrl" placeholder="https://..."></label>
+            <label><span>Primary Color</span><input name="primaryColor" type="color" value="#2146d0"></label>
+            <label><span>WhatsApp Number</span><input name="whatsappNumber" placeholder="923001234567"></label>
+            <label><span>Admin Name</span><input name="adminName" required></label>
+            <label><span>Admin Email</span><input name="adminEmail" type="email" required></label>
+            <label><span>Admin Password</span><input name="adminPassword" type="password" required></label>
+            <button type="submit" class="btn primary full">Complete Setup</button>
+            <button type="button" id="loadDemoBtn" class="btn secondary full">Load Demo Data</button>
+            <div id="setupMessage" class="message"></div>
+          </form>
+          <div class="card inner-card notes">
+            <h3>Demo accounts after demo load</h3>
+            <div>Owner: owner@portal.local / Owner@123</div>
+            <div>Admin: admin@bfs.local / Admin@123 / BFS001</div>
+            <div>Teacher: teacher1@bfs.local / Teacher@123 / BFS001</div>
+            <div>Parent: parent1@bfs.local / Parent@123 / BFS001</div>
+            <div>Student: student1@bfs.local / Student@123 / BFS001</div>
+            <hr>
+            <p>For production use, do not load demo data. Create your real owner and school setup.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="publicView" class="grid two gap-xl hidden">
+        <section id="loginView" class="card">
+          <div class="section-head">
+            <div>
+              <h2>Portal Login</h2>
+              <p>The owner can log in without a school code. Admin, teacher, parent, and student users should enter their school code.</p>
+            </div>
+          </div>
+          <form id="loginForm" class="form-grid">
+            <label><span>Email</span><input name="email" type="email" required placeholder="name@example.com"></label>
+            <label><span>School Code</span><input name="schoolCode" placeholder="For example: BFS001"></label>
+            <label><span>Password</span><input name="password" type="password" required></label>
+            <button type="submit" class="btn primary full">Enter Portal</button>
+          </form>
+          <div class="row-actions">
+            <button id="toggleResetBtn" class="link-btn" type="button">Forgot password?</button>
+          </div>
+          <div id="loginMessage" class="message"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <h2>New School Onboarding</h2>
+              <p>Submit this request for a new school setup, branding, and initial configuration.</p>
+            </div>
+          </div>
+          <form id="onboardingForm" class="form-grid">
+            <label><span>School Name</span><input name="schoolName" required></label>
+            <label><span>City</span><input name="city"></label>
+            <label><span>Contact Person</span><input name="contactName" required></label>
+            <label><span>Phone</span><input name="phone" required></label>
+            <label><span>Email</span><input name="email" type="email"></label>
+            <label class="full-width"><span>Notes</span><textarea name="notes" rows="4" placeholder="Required features, number of students, timing, etc."></textarea></label>
+            <button type="submit" class="btn secondary full">Submit Request</button>
+          </form>
+          <div id="onboardingMessage" class="message"></div>
+        </section>
+
+        <section class="card full-width">
+          <div class="section-head">
+            <div>
+              <h2>Online Admission Form</h2>
+              <p>The admission form stays collapsed by default. Open it with the button below. You can choose the school from the dropdown or enter the school code manually.</p>
+            </div>
+            <button id="toggleAdmissionBtn" class="btn secondary" type="button">Open Admission Form</button>
+          </div>
+          <div id="admissionFormWrap" class="hidden">
+            <form id="admissionForm" class="form-grid">
+              <label><span>Select School</span><select name="schoolName" id="admissionSchoolSelect"><option value="">Select a school</option></select></label>
+              <label><span>Or School Code</span><input name="schoolCode" placeholder="For example: BFS001"></label>
+              <label><span>Student Name</span><input name="studentName" required></label>
+              <label><span>Father / Guardian Name</span><input name="fatherName" required></label>
+              <label><span>Class Applying For</span><input name="className" required></label>
+              <label><span>Date of Birth</span><input name="dob" type="date"></label>
+              <label><span>Previous School</span><input name="previousSchool"></label>
+              <label><span>Phone</span><input name="phone" required></label>
+              <label><span>WhatsApp</span><input name="whatsapp"></label>
+              <label><span>Email</span><input name="email" type="email"></label>
+              <label class="full-width"><span>Address</span><input name="address"></label>
+              <label class="full-width"><span>Notes</span><textarea name="notes" rows="4" placeholder="Any admission note, previous result, transport need, etc."></textarea></label>
+              <button type="submit" class="btn primary full">Submit Admission Form</button>
+            </form>
+            <div id="admissionMessage" class="message"></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="resetCard" class="card hidden">
+        <div class="section-head">
+          <div>
+            <h2>Password Reset Request</h2>
+            <p>Student, parent, and teacher reset requests go to the admin dashboard, while admin reset requests go to the owner dashboard.</p>
+          </div>
+        </div>
+        <form id="resetForm" class="form-grid">
+          <label><span>Email</span><input name="email" type="email" required></label>
+          <label><span>School Code</span><input name="schoolCode"></label>
+          <label><span>Role</span>
+            <select name="roleHint">
+              <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+              <option value="parent">Parent</option>
+              <option value="student">Student</option>
+            </select>
+          </label>
+          <label class="full-width"><span>Note</span><input name="note" placeholder="Example: cannot access parent portal"></label>
+          <button type="submit" class="btn secondary full">Submit Reset Request</button>
+        </form>
+        <div id="resetMessage" class="message"></div>
+      </section>
+
+      <section id="appView" class="hidden">
+        <section id="ownerPanel" class="hidden">
+          <div class="section-head">
+            <div>
+              <h2>Owner Dashboard</h2>
+              <p>Manage all schools, onboarding requests, reset requests, and branding controls from one owner dashboard.</p>
+            </div>
+          </div>
+          <div id="ownerStats" class="stats"></div>
+          <div class="grid two gap-xl">
+            <div class="card inner-card">
+              <h3>New School</h3>
+              <form id="createSchoolForm" class="form-grid">
+                <label><span>School Name</span><input name="name" required></label>
+                <label><span>School Code</span><input name="code" required></label>
+                <label><span>Tagline</span><input name="tagline"></label>
+                <label><span>Phone</span><input name="phone"></label>
+                <label><span>Address</span><input name="address"></label>
+                <label><span>Logo URL</span><input name="logoUrl"></label>
+                <label><span>Upload Logo</span><input name="logoFile" type="file" accept="image/*"></label>
+                <label><span>Primary Color</span><input name="primaryColor" type="color" value="#2146d0"></label>
+                <label><span>WhatsApp Number</span><input name="whatsappNumber"></label>
+                <label><span>Admin Name</span><input name="adminName" required></label>
+                <label><span>Admin Email</span><input name="adminEmail" type="email" required></label>
+                <label><span>Admin Password</span><input name="adminPassword" required></label>
+                <button type="submit" class="btn primary full">Create School</button>
+              </form>
+              <div id="ownerActionMessage" class="message"></div>
+            </div>
+            <div class="card inner-card">
+              <h3>Update School Branding</h3>
+              <form id="brandingForm" class="form-grid">
+                <label><span>School</span><select name="schoolId" id="ownerSchoolSelect"></select></label>
+                <label><span>Name</span><input name="name"></label>
+                <label><span>Tagline</span><input name="tagline"></label>
+                <label><span>Phone</span><input name="phone"></label>
+                <label><span>Address</span><input name="address"></label>
+                <label><span>Logo URL</span><input name="logoUrl"></label>
+                <label><span>Upload Logo</span><input name="logoFile" type="file" accept="image/*"></label>
+                <label><span>Primary Color</span><input name="primaryColor" type="color" value="#2146d0"></label>
+                <label><span>WhatsApp Number</span><input name="whatsappNumber"></label>
+                <button type="submit" class="btn secondary full">Save Branding</button>
+              </form>
+              <div id="brandingMessage" class="message"></div>
+            </div>
+          </div>
+          <div class="grid two gap-xl top-gap">
+            <div class="card inner-card"><h3>All Schools</h3><div class="table-wrap"><table id="schoolsTable"></table></div></div>
+            <div class="card inner-card"><h3>Requests</h3><div class="table-wrap"><table id="ownerRequestsTable"></table></div></div>
+          </div>
+          <div class="grid two gap-xl top-gap">
+            <div class="card inner-card">
+              <h3>Reset Requests</h3>
+              <div class="table-wrap"><table id="resetRequestsTable"></table></div>
+            </div>
+            <div class="card inner-card">
+              <h3>Handle Reset</h3>
+              <form id="ownerResetHandleForm" class="form-grid">
+                <label><span>Request ID</span><input name="requestId" type="number"></label>
+                <label><span>User Email</span><input name="email" type="email" required></label>
+                <label><span>New Password</span><input name="newPassword" required></label>
+                <button type="submit" class="btn primary full">Update Password</button>
+              </form>
+              <div id="ownerResetMessage" class="message"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="adminPanel" class="hidden">
+          <div class="section-head">
+            <div>
+              <h2>School Admin Dashboard</h2>
+              <p>A clear workspace for daily school administration: students, parents, teachers, fees, attendance, results, admissions, and branding.</p>
+            </div>
+          </div>
+          <div id="adminStats" class="stats"></div>
+          <div class="tabs">
+            <button class="tab active" data-tab="studentsTab">Students</button>
+            <button class="tab" data-tab="parentsTab">Parents</button>
+            <button class="tab" data-tab="teachersTab">Teachers</button>
+            <button class="tab" data-tab="salaryTab">Teacher Salary</button>
+            <button class="tab" data-tab="feesTab">Fees</button>
+            <button class="tab" data-tab="bulkFeeTab">Bulk Fees</button>
+            <button class="tab" data-tab="paymentsTab">Payments</button>
+            <button class="tab" data-tab="attendanceTab">Attendance</button>
+            <button class="tab" data-tab="resultsTab">Results</button>
+            <button class="tab" data-tab="brandingTab">Branding</button>
+            <button class="tab" data-tab="sheetTab">Sheet Sync</button>
+            <button class="tab" data-tab="alertsTab">Fee Alerts</button>
+            <button class="tab" data-tab="admissionsTab">Admissions</button>
+            <button class="tab" data-tab="adminResetTab">Reset Requests</button>
+            <button class="tab" data-tab="noticesTab">Notice Board</button>
+          </div>
+
+          <div id="studentsTab" class="tab-panel active">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Add Student</h3>
+                <form id="studentForm" class="form-grid">
+                  <label><span>Name</span><input name="name" required></label>
+                  <label><span>Roll No</span><input name="rollNo"></label>
+                  <label><span>Class</span><input name="className"></label>
+                  <label><span>Section</span><input name="section"></label>
+                  <label><span>Parent</span><select name="parentId" id="studentParentSelect"></select></label>
+                  <label><span>Father Name</span><input name="fatherName"></label>
+                  <label><span>Phone</span><input name="phone"></label>
+                  <label><span>Address</span><input name="address"></label>
+                  <label><span>Portal Email</span><input name="studentEmail" type="email"></label>
+                  <label><span>Portal Password</span><input name="studentPassword"></label>
+                  <button type="submit" class="btn primary full">Add Student</button>
+                </form>
+                <div id="studentMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Students</h3><div class="table-wrap"><table id="studentsTable"></table></div></div>
+            </div>
+            <div class="card inner-card top-gap">
+              <h3>Edit Student Profile</h3>
+              <form id="studentEditForm" class="form-grid">
+                <label><span>Select Student</span><select name="studentId" id="studentEditSelect"></select></label>
+                <label><span>Name</span><input name="name"></label>
+                <label><span>Roll No</span><input name="rollNo"></label>
+                <label><span>Class</span><input name="className"></label>
+                <label><span>Section</span><input name="section"></label>
+                <label><span>Parent</span><select name="parentId" id="studentEditParentSelect"></select></label>
+                <label><span>Father Name</span><input name="fatherName"></label>
+                <label><span>Phone</span><input name="phone"></label>
+                <label><span>Address</span><input name="address"></label>
+                <button type="submit" class="btn secondary full">Update Student Profile</button>
+              </form>
+              <div id="studentEditMessage" class="message"></div>
+            </div>
+          </div>
+
+          <div id="parentsTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Add Parent</h3>
+                <form id="parentForm" class="form-grid">
+                  <label><span>Name</span><input name="name" required></label>
+                  <label><span>Phone</span><input name="phone"></label>
+                  <label><span>Email</span><input name="email" type="email"></label>
+                  <label><span>Address</span><input name="address"></label>
+                  <label><span>Portal Password</span><input name="portalPassword"></label>
+                  <button type="submit" class="btn primary full">Add Parent</button>
+                </form>
+                <div id="parentMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Parents</h3><div class="table-wrap"><table id="parentsTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="teachersTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Add Teacher</h3>
+                <form id="teacherForm" class="form-grid">
+                  <label><span>Name</span><input name="name" required></label>
+                  <label><span>Subject</span><input name="subject"></label>
+                  <label><span>Assigned Class</span><input name="assignedClass" placeholder="For example: 5-A"></label>
+                  <label><span>Phone</span><input name="phone"></label>
+                  <label><span>Email</span><input name="email" type="email"></label>
+                  <label><span>Portal Password</span><input name="portalPassword"></label>
+                  <button type="submit" class="btn primary full">Add Teacher</button>
+                </form>
+                <div id="teacherMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Teachers</h3><div class="table-wrap"><table id="teachersTable"></table></div></div>
+            </div>
+          </div>
+
+
+          <div id="salaryTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Assign Teacher Salary</h3>
+                <form id="assignSalaryForm" class="form-grid">
+                  <label><span>Teacher</span><select name="teacherId" id="salaryTeacherSelect"></select></label>
+                  <label><span>Title</span><input name="title" value="Monthly Salary"></label>
+                  <label><span>Month</span><input name="monthLabel" placeholder="For example: April 2026"></label>
+                  <label><span>Gross Amount</span><input name="amount" type="number" required></label>
+                  <label><span>Bonus</span><input name="bonusAmount" type="number" value="0"></label>
+                  <label><span>Deductions</span><input name="deductionAmount" type="number" value="0"></label>
+                  <label><span>Due Date</span><input name="dueDate" type="date"></label>
+                  <label><span>Note</span><input name="note"></label>
+                  <div class="hint full-width">Net salary = gross + bonus - deductions</div>
+                  <button type="submit" class="btn primary full">Assign Salary</button>
+                </form>
+                <div id="salaryMessage" class="message"></div>
+              </div>
+              <div class="card inner-card">
+                <h3>Save Salary Payment</h3>
+                <form id="salaryPaymentForm" class="form-grid">
+                  <label><span>Salary ID</span><input name="salaryId" type="number" required></label>
+                  <label><span>Amount</span><input name="amount" type="number"></label>
+                  <label><span>Payment Type</span><select name="paymentType"><option value="full">Full Payment</option><option value="partial">Partial Payment</option></select></label>
+                  <label><span>Method</span><input name="method" placeholder="Cash / Bank"></label>
+                  <label><span>Note</span><input name="note"></label>
+                  <button type="submit" class="btn secondary full">Save Salary Payment</button>
+                </form>
+                <div id="salaryPaymentMessage" class="message"></div>
+              </div>
+            </div>
+            <div class="grid two gap-xl top-gap">
+              <div class="card inner-card"><h3>Salary Records</h3><div class="table-wrap"><table id="salaryTable"></table></div></div>
+              <div class="card inner-card"><h3>Salary Payments</h3><div class="table-wrap"><table id="salaryPaymentsTable"></table></div></div>
+            </div>
+            <div class="grid two gap-xl top-gap">
+              <div class="card inner-card"><h3>Monthly Payroll Summary</h3><div class="table-wrap"><table id="payrollSummaryTable"></table></div></div>
+              <div class="card inner-card"><h3>Teacher Yearly Salary Report</h3><div class="table-wrap"><table id="teacherYearlyPayrollTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="feesTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Assign Fee</h3>
+                <form id="assignFeeForm" class="form-grid">
+                  <label><span>Student</span><select name="studentId" id="feeStudentSelect"></select></label>
+                  <label><span>Title</span><input name="title" required></label>
+                  <label><span>Month</span><input name="monthLabel"></label>
+                  <label><span>Amount</span><input name="amount" type="number" required></label>
+                  <label><span>Due Date</span><input name="dueDate" type="date"></label>
+                  <label><span>Notes</span><input name="notes"></label>
+                  <button type="submit" class="btn primary full">Assign Fee</button>
+                </form>
+                <div id="feeMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Fee Records</h3><div class="table-wrap"><table id="feesTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="bulkFeeTab" class="tab-panel">
+            <div class="card inner-card">
+              <h3>Bulk Fee</h3>
+              <form id="bulkFeeForm" class="form-grid two-col">
+                <label><span>Class</span><select name="className" id="classSelect"></select></label>
+                <label><span>Title</span><input name="title" required></label>
+                <label><span>Month</span><input name="monthLabel"></label>
+                <label><span>Amount</span><input name="amount" type="number" required></label>
+                <label><span>Due Date</span><input name="dueDate" type="date"></label>
+                <label><span>Notes</span><input name="notes"></label>
+                <button type="submit" class="btn primary full">Apply Bulk Fee</button>
+              </form>
+              <div id="bulkFeeMessage" class="message"></div>
+            </div>
+          </div>
+
+          <div id="paymentsTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Verify / Save Payment</h3>
+                <form id="verifyFeeForm" class="form-grid">
+                  <label><span>Fee ID</span><input name="feeId" type="number" required></label>
+                  <label><span>Amount</span><input name="amount" type="number"></label>
+                  <label><span>Payment Type</span><select name="paymentType"><option value="full">Full Payment</option><option value="partial">Partial Payment</option></select></label>
+                  <label><span>Method</span><input name="method" placeholder="Cash / Bank"></label>
+                  <label><span>Reference No</span><input name="referenceNo"></label>
+                  <label><span>Note</span><input name="note"></label>
+                  <button type="submit" class="btn primary full">Save Payment</button>
+                </form>
+                <div id="verifyFeeMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Payments & Receipts</h3><div class="table-wrap"><table id="paymentsTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="attendanceTab" class="tab-panel">
+            <div class="card inner-card"><h3>Attendance Summary</h3><div class="table-wrap"><table id="attendanceSummaryTable"></table></div></div>
+            <div class="grid two gap-xl top-gap">
+              <div class="card inner-card">
+                <h3>Mark Attendance</h3>
+                <form id="attendanceForm" class="form-grid">
+                  <label><span>Student</span><select name="studentId" id="attendanceStudentSelect"></select></label>
+                  <label><span>Date</span><input name="attendanceDate" type="date" required></label>
+                  <label><span>Status</span><select name="status"><option value="present">Present</option><option value="absent">Absent</option><option value="late">Late</option></select></label>
+                  <label><span>Note</span><input name="note"></label>
+                  <button type="submit" class="btn primary full">Save Attendance</button>
+                </form>
+                <div id="attendanceMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Attendance Records</h3><div class="table-wrap"><table id="attendanceTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="resultsTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Annual / Exam Result Entry</h3>
+                <form id="resultForm" class="form-grid">
+                  <input type="hidden" name="originalExamTitle">
+                  <label><span>Student</span><select name="studentId" id="resultStudentSelect"></select></label>
+                  <label><span>Exam / Session</span><input name="examTitle" required placeholder="For example: Annual Exam 2026"></label>
+                  <label><span>Overall Result</span><select name="resultStatus"><option value="Promoted">Promoted</option><option value="Pass">Pass</option><option value="Fail">Fail</option><option value="Needs Improvement">Needs Improvement</option></select></label>
+                  <label><span>Position / Merit</span><select name="positionValue"><option value="overall">Overall Result</option><option value="first">1st Position</option><option value="second">2nd Position</option><option value="third">3rd Position</option><option value="custom">Custom</option></select></label>
+                  <label><span>Custom Position (optional)</span><input name="customPosition" placeholder="For example: Distinction / Top 10"></label>
+                  <label class="full-width"><span>Student Preview</span><div id="resultStudentPreview" class="preview-box" style="min-height:120px">Student details will appear here automatically.</div></label>
+                  <label class="full-width"><span>Subject Rows</span><textarea id="subjectRowsInput" name="subjectRows" rows="10" placeholder="Enter one subject per line in this format: English|100|88|Excellent
+Math|100|79|Good"></textarea></label><div class="full-width small">Format: Subject | Total Marks | Obtained Marks | Row Remarks. Saving again for the same student and exam will update the full card.</div>
+                  <label class="full-width"><span>Overall Remarks</span><textarea name="overallRemarks" rows="4" placeholder="Enter overall remarks for the result card"></textarea></label>
+                  <div id="resultEditState" class="message hidden"></div>
+                  <div class="full-width row-actions" style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button type="submit" class="btn primary">Save Full Result Card</button>
+                    <button type="button" id="clearResultEditBtn" class="btn secondary">Clear / New Result Card</button>
+                  </div>
+                </form>
+                <div id="resultMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Results</h3><div class="table-wrap"><table id="resultsTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="brandingTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>School Branding</h3>
+                <form id="schoolSettingsForm" class="form-grid">
+                  <label><span>Name</span><input name="name"></label>
+                  <label><span>Tagline</span><input name="tagline"></label>
+                  <label><span>Phone</span><input name="phone"></label>
+                  <label><span>Address</span><input name="address"></label>
+                  <label><span>Logo URL</span><input name="logoUrl"></label>
+                  <label><span>Upload Logo</span><input name="logoFile" type="file" accept="image/*"></label>
+                  <label><span>Primary Color</span><input name="primaryColor" type="color" value="#2146d0"></label>
+                  <label><span>WhatsApp Number</span><input name="whatsappNumber"></label>
+                  <button type="submit" class="btn secondary full">Save Branding</button>
+                </form>
+                <div id="schoolSettingsMessage" class="message"></div>
+              </div>
+              <div class="card inner-card">
+                <h3>Brand Preview</h3>
+                <div id="brandPreview" class="preview-box">Your school branding preview will appear here.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="sheetTab" class="tab-panel">
+            <div class="card inner-card">
+              <h3>Student Import from Google Sheets / CSV</h3>
+              <form id="sheetSyncForm" class="form-grid">
+                <label class="full-width"><span>CSV URL</span><input name="csvUrl" required placeholder="Google Sheet share link or public CSV link"></label>
+                <button type="submit" class="btn secondary full">Import Students</button>
+              </form>
+              <div id="sheetSyncMessage" class="message"></div>
+            </div>
+          </div>
+
+          <div id="alertsTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Generate Fee Alert Templates</h3>
+                <p>Ready-made WhatsApp and SMS templates help speed up fee follow-up and reminder workflows.</p>
+                <button id="generateAlertsBtn" class="btn primary full" type="button">Generate Alerts</button>
+                <div id="alertsMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Alert Queue</h3><div class="table-wrap"><table id="alertsTable"></table></div></div>
+            </div>
+          </div>
+
+          <div id="admissionsTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card"><h3>Online Admission Requests</h3><div class="table-wrap"><table id="admissionsTable"></table></div></div>
+              <div class="card inner-card">
+                <h3>Approve Admission & Print Slip</h3>
+                <form id="admissionApproveForm" class="form-grid">
+                  <label><span>Admission Request ID</span><input name="requestId" type="number" required></label>
+                  <label><span>Roll No</span><input name="rollNo"></label>
+                  <label><span>Class</span><input name="className"></label>
+                  <label><span>Section</span><input name="section" value="A"></label>
+                  <label><span>Parent Email</span><input name="parentEmail" type="email"></label>
+                  <label><span>Parent Password</span><input name="parentPassword"></label>
+                  <label><span>Student Email</span><input name="studentEmail" type="email"></label>
+                  <label><span>Student Password</span><input name="studentPassword"></label>
+                  <label><span>Admission Fee</span><input name="admissionFee" type="number" value="0"></label>
+                  <button type="submit" class="btn primary full">Approve Admission</button>
+                </form>
+                <div id="admissionApproveMessage" class="message"></div>
+              </div>
+            </div>
+          </div>
+
+                    <div id="adminResetTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card"><h3>Reset Requests for Admin</h3><div class="table-wrap"><table id="adminResetRequestsTable"></table></div></div>
+              <div class="card inner-card">
+                <h3>Handle Student / Parent / Teacher Reset</h3>
+                <form id="adminResetHandleForm" class="form-grid">
+                  <label><span>Request ID</span><input name="requestId" type="number" required></label>
+                  <label><span>User Email</span><input name="email" type="email" required></label>
+                  <label><span>New Password</span><input name="newPassword" required></label>
+                  <button type="submit" class="btn secondary full">Update Password</button>
+                </form>
+                <div id="adminResetMessage" class="message"></div>
+              </div>
+            </div>
+          </div>
+
+<div id="noticesTab" class="tab-panel">
+            <div class="grid two gap-xl">
+              <div class="card inner-card">
+                <h3>Publish Notice</h3>
+                <form id="noticeForm" class="form-grid">
+                  <label><span>Title</span><input name="title" required></label>
+                  <label><span>Audience</span>
+                    <select name="audience">
+                      <option value="all">All Users</option>
+                      <option value="students">Students</option>
+                      <option value="parents">Parents</option>
+                      <option value="teachers">Teachers</option>
+                    </select>
+                  </label>
+                  <label class="full-width"><span>Notice Text</span><textarea name="body" rows="5" required></textarea></label>
+                  <button type="submit" class="btn secondary full">Publish Notice</button>
+                </form>
+                <div id="noticeMessage" class="message"></div>
+              </div>
+              <div class="card inner-card"><h3>Notice Board</h3><div class="table-wrap"><table id="noticesTable"></table></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="parentPanel" class="hidden">
+          <div class="section-head"><div><h2>Parent Portal</h2><p>View children, fee records, challans, results, and submitted payments.</p></div></div>
+          <div class="grid two gap-xl">
+            <div class="card inner-card"><h3>Parent Profile</h3><div id="parentProfile" class="profile-box"></div></div>
+            <div class="card inner-card"><h3>Children</h3><div class="table-wrap"><table id="childrenTable"></table></div></div>
+            <div class="card inner-card">
+              <h3>Submit Payment</h3>
+              <form id="parentSubmitFeeForm" class="form-grid">
+                <label><span>Fee ID</span><input name="feeId" type="number" required></label>
+                <label><span>Amount</span><input name="amount" type="number"></label>
+                <label><span>Method</span><input name="method" placeholder="Bank Transfer"></label>
+                <label><span>Reference No</span><input name="referenceNo"></label>
+                <label><span>Note</span><input name="note"></label>
+                <button type="submit" class="btn primary full">Submit Payment</button>
+              </form>
+              <div id="parentFeeMessage" class="message"></div>
+            </div>
+          </div>
+          <div class="grid two gap-xl top-gap">
+            <div class="card inner-card"><h3>Fees</h3><div class="table-wrap"><table id="parentFeesTable"></table></div></div>
+            <div class="card inner-card"><h3>Payments</h3><div class="table-wrap"><table id="parentPaymentsTable"></table></div></div>
+          </div>
+          <div class="card inner-card top-gap"><h3>Results</h3><div class="table-wrap"><table id="parentResultsTable"></table></div></div>
+          <div class="card inner-card top-gap"><h3>Notice Board</h3><div class="table-wrap"><table id="parentNoticesTable"></table></div></div>
+        </section>
+
+        <section id="teacherPanel" class="hidden">
+          <div class="section-head"><div><h2>Teacher Portal</h2><p>Teachers can mark attendance, save results, and review the notice board.</p></div></div>
+          <div class="grid two gap-xl"><div class="card inner-card"><h3>Teacher Profile</h3><div id="teacherProfile" class="profile-box"></div></div><div class="card inner-card"><h3>Attendance Summary</h3><div class="table-wrap"><table id="teacherAttendanceSummaryTable"></table></div></div></div>
+          <div id="teacherStats" class="stats top-gap"></div>
+          <div class="grid two gap-xl top-gap">
+            <div class="card inner-card"><h3>Salary Records</h3><div class="table-wrap"><table id="teacherSalaryTable"></table></div></div>
+            <div class="card inner-card"><h3>Salary Payment History</h3><div class="table-wrap"><table id="teacherSalaryPaymentsTable"></table></div></div>
+          </div>
+          <div class="card inner-card top-gap"><h3>Yearly Salary Report</h3><div class="table-wrap"><table id="teacherYearlySalaryTable"></table></div></div>
+          <div class="grid two gap-xl">
+            <div class="card inner-card">
+              <h3>Mark Attendance</h3>
+              <form id="teacherAttendanceForm" class="form-grid">
+                <label><span>Student</span><select name="studentId" id="teacherAttendanceStudentSelect"></select></label>
+                <label><span>Date</span><input name="attendanceDate" type="date" required></label>
+                <label><span>Status</span><select name="status"><option value="present">Present</option><option value="absent">Absent</option><option value="late">Late</option></select></label>
+                <label><span>Note</span><input name="note"></label>
+                <button type="submit" class="btn primary full">Save Attendance</button>
+              </form>
+              <div id="teacherAttendanceMessage" class="message"></div>
+            </div>
+            <div class="card inner-card">
+              <h3>Add Result</h3>
+              <form id="teacherResultForm" class="form-grid">
+                <label><span>Student</span><select name="studentId" id="teacherResultStudentSelect"></select></label>
+                <label><span>Exam</span><input name="examTitle" required></label>
+                <label><span>Subject</span><input name="subject" required></label>
+                <label><span>Total Marks</span><input name="totalMarks" type="number" required></label>
+                <label><span>Obtained Marks</span><input name="obtainedMarks" type="number" required></label>
+                <label><span>Grade</span><input name="grade"></label>
+                <label><span>Remarks</span><input name="remarks"></label>
+                <button type="submit" class="btn secondary full">Save Result</button>
+              </form>
+              <div id="teacherResultMessage" class="message"></div>
+            </div>
+          </div>
+          <div class="grid two gap-xl top-gap">
+            <div class="card inner-card"><h3>Attendance Records</h3><div class="table-wrap"><table id="teacherAttendanceTable"></table></div></div>
+            <div class="card inner-card"><h3>Results</h3><div class="table-wrap"><table id="teacherResultsTable"></table></div></div>
+          </div>
+          <div class="card inner-card top-gap"><h3>Notice Board</h3><div class="table-wrap"><table id="teacherNoticesTable"></table></div></div>
+        </section>
+
+        <section id="studentPanel" class="hidden">
+          <div class="section-head"><div><h2>Student Portal</h2><p>View your full profile, fee records, and result history.</p></div></div>
+          <div class="grid two gap-xl">
+            <div class="card inner-card"><h3>Profile</h3><div id="studentProfile" class="profile-box"></div></div>
+            <div class="card inner-card"><h3>Fees</h3><div class="table-wrap"><table id="studentFeesTable"></table></div></div>
+          </div>
+          <div class="card inner-card top-gap"><h3>Results</h3><div class="table-wrap"><table id="studentResultsTable"></table></div></div>
+          <div class="card inner-card top-gap"><h3>Notice Board</h3><div class="table-wrap"><table id="studentNoticesTable"></table></div></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
